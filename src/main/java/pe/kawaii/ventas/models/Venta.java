@@ -19,8 +19,10 @@ public class Venta {
     private ArrayList<VentaDetalle> detalles;
     private Date fechaRegistro;
     private double total;
+    private boolean anulada;
 
     public Venta() {
+        this.anulada = false;
     }
 
     public Venta(int id, Usuario vendedor, Cliente cliente, ArrayList<VentaDetalle> detalles, Date fechaRegistro, double total) {
@@ -30,6 +32,7 @@ public class Venta {
         this.detalles = detalles;
         this.fechaRegistro = fechaRegistro;
         this.total = total;
+        this.anulada = false;
     }
 
     public int getId() {
@@ -78,6 +81,14 @@ public class Venta {
 
     public void setTotal(double total) {
         this.total = total;
+    }
+
+    public boolean isAnulada() {
+        return anulada;
+    }
+
+    public void setAnulada(boolean anulada) {
+        this.anulada = anulada;
     }
 
     @Override
