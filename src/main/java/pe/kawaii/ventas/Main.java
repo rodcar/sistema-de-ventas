@@ -4,13 +4,16 @@
 
 package pe.kawaii.ventas;
 
+import pe.kawaii.ventas.views.auth.VentanaAutenticacion;
+
 /**
  *
  * @author EDITA
  */
-public class SistemaDeVentas {
+public class Main {
 
     public static void main(String[] args) {
-        System.out.println("Hello World!");
+        VentanaAutenticacion ventanaAutenticacion = new VentanaAutenticacion();
+        ventanaAutenticacion.setVisible(true);
     }
 }
