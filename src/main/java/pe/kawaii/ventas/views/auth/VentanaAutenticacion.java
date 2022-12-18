@@ -4,6 +4,8 @@
  */
 package pe.kawaii.ventas.views.auth;
 
+import java.awt.geom.RoundRectangle2D;
+
 /**
  *
  * @author Ivan
@@ -14,7 +16,10 @@ public class VentanaAutenticacion extends javax.swing.JFrame {
      * Creates new form VentanaAutenticacion
      */
     public VentanaAutenticacion() {
+        setUndecorated(true);
         initComponents();
+        setLocationRelativeTo(null);
+        setShape(new RoundRectangle2D.Double(0, 0, getWidth(), getHeight(), 12, 12));
     }
 
     /**
