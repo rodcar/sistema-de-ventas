@@ -10,6 +10,7 @@ package pe.kawaii.ventas.models;
  */
 public class Usuario {
 
+    private int id;
     private String username;
     private String password;
     private Rol rol;
@@ -17,7 +18,8 @@ public class Usuario {
     public Usuario() {
     }
 
-    public Usuario(String username, String password, Rol rol) {
+    public Usuario(int id, String username, String password, Rol rol) {
+        this.id = id;
         this.username = username;
         this.password = password;
         this.rol = rol;
@@ -46,5 +48,13 @@ public class Usuario {
     public void setRol(Rol rol) {
         this.rol = rol;
     }
- 
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
 }
