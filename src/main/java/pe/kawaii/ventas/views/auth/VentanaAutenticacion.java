@@ -16,10 +16,10 @@ public class VentanaAutenticacion extends javax.swing.JFrame {
      * Creates new form VentanaAutenticacion
      */
     public VentanaAutenticacion() {
-        setUndecorated(true);
+        //setUndecorated(true);
         initComponents();
         setLocationRelativeTo(null);
-        setShape(new RoundRectangle2D.Double(0, 0, getWidth(), getHeight(), 12, 12));
+        //setShape(new RoundRectangle2D.Double(0, 0, getWidth(), getHeight(), 12, 12));
     }
 
     /**
@@ -31,17 +31,21 @@ public class VentanaAutenticacion extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        panelLogin2 = new pe.kawaii.ventas.views.auth.PanelLogin();
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Sistema de ventas - Ingreso");
+        setResizable(false);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addComponent(panelLogin2, javax.swing.GroupLayout.PREFERRED_SIZE, 255, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+            .addComponent(panelLogin2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         pack();
@@ -83,5 +87,6 @@ public class VentanaAutenticacion extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private pe.kawaii.ventas.views.auth.PanelLogin panelLogin2;
     // End of variables declaration//GEN-END:variables
 }
