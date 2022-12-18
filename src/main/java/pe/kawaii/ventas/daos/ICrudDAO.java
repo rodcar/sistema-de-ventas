@@ -9,7 +9,7 @@ import java.util.Optional;
  * @author Ivan Rodriguez
  * @param <T> Clase genérica
  */
-public interface CrudDAO<T> {
+public interface ICrudDAO<T> {
 
     /**
      * Registra el objeto

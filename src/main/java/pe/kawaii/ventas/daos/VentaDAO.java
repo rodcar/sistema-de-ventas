@@ -12,7 +12,7 @@ import pe.kawaii.ventas.models.Venta;
  *
  * @author Ivan
  */
-public class VentaDAO implements CrudDAO<Venta> {
+public class VentaDAO implements ICrudDAO<Venta> {
 
     @Override
     public void save(Venta t) {

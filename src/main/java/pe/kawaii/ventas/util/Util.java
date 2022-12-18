@@ -4,10 +4,12 @@
  */
 package pe.kawaii.ventas.util;
 
+import pe.kawaii.ventas.daos.impl.DataSource;
+
 /**
  *
  * @author Ivan
  */
 public class Util {
-    
+    public static DataSource dataSource = DataSource.MYSQL;
 }
