@@ -38,3 +38,13 @@ create table productos (
     stock int not null,
     primary key (id)
 );
+
+create table ventas (
+    id int not null auto_increment,
+    usuario_id int not null,
+    cliente_id int not null,    
+    fecha_registro datetime not null,
+    total decimal(10,2) not null,
+    anulada boolean not null,
+    primary key (id)
+);
