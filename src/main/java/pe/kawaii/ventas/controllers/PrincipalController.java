@@ -5,6 +5,7 @@
 package pe.kawaii.ventas.controllers;
 
 import javax.swing.JFrame;
+import pe.kawaii.ventas.session.UserSession;
 import pe.kawaii.ventas.views.VentanaPrincipal;
 
 /**
@@ -15,7 +16,7 @@ public class PrincipalController {
 
     private static VentanaPrincipal view = new VentanaPrincipal();
 
-    public static void mostrarVentana() {
+    public static void mostrarVentana() {       
         view.setExtendedState(JFrame.MAXIMIZED_BOTH);
         view.setVisible(true);
     }

@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import java.util.Optional;
 import pe.kawaii.ventas.daos.IUsuarioDAO;
 import pe.kawaii.ventas.db.DbConn;
+import pe.kawaii.ventas.models.Rol;
 import pe.kawaii.ventas.models.Usuario;
 
 /**
@@ -46,7 +47,8 @@ public class UsuarioDAO implements IUsuarioDAO {
     }
 
     @Override
-    public int login(String username, String password) {
+    public Optional<Usuario> login(String username, String password) {
+        Usuario usuario = null;
         try {
             cn = DbConn.getConnection();
             ps = cn.prepareStatement("select * from usuarios where username=? and password=md5(?)");
@@ -55,13 +57,16 @@ public class UsuarioDAO implements IUsuarioDAO {
             rs = ps.executeQuery();
 
             if (rs.next()) {
-                return rs.getInt(1);
+                usuario = new Usuario();
+                usuario.setId(rs.getInt("id"));
+                usuario.setRol(Rol.values()[rs.getInt("rol_id")]);
+                return Optional.of(usuario);
             }
 
         } catch (SQLException ex) {
             System.out.println("error de conexion");
         }
-        return -1;
+        return Optional.empty();
     }
 
 }

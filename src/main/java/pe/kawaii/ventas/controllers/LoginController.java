@@ -27,7 +27,7 @@ public class LoginController {
         String password = String.valueOf(view.getPnlLogin().getTxtPassword().getPassword());
 
         if (usuarioService.login(username, password)) {
-            System.out.println("Ingresó el usuario con id: " + UserSession.getInstance().getId());
+            System.out.println("Ingresó el usuario con id: " + UserSession.getInstance().getId() + " y rol de " + UserSession.getInstance().getRol());
             PrincipalController.mostrarVentana();
             view.dispose();
         } else {

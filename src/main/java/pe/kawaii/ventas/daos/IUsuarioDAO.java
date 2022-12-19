@@ -4,6 +4,7 @@
  */
 package pe.kawaii.ventas.daos;
 
+import java.util.Optional;
 import pe.kawaii.ventas.models.Usuario;
 
 /**
@@ -12,5 +13,5 @@ import pe.kawaii.ventas.models.Usuario;
  */
 public interface IUsuarioDAO extends ICrudDAO<Usuario> {
 
-    public int login(String username, String password);
+    public Optional<Usuario> login(String username, String password);
 }

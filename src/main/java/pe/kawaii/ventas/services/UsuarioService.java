@@ -46,10 +46,10 @@ public class UsuarioService implements CrudService<Usuario> {
     }
 
     public boolean login(String username, String password) {
-        int usuarioId = this.usuarioDAO.login(username, password);
-
-        if (usuarioId >= 0) {
-            UserSession.getInstance().setId(usuarioId);
+        Optional<Usuario> usuario = this.usuarioDAO.login(username, password);
+        if(usuario.isPresent()) {
+            UserSession.getInstance().setId(usuario.get().getId());
+            UserSession.getInstance().setRol(usuario.get().getRol());
             return true;
         }
         return false;

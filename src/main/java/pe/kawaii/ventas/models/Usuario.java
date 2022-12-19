@@ -21,6 +21,9 @@ public class Usuario extends Persona {
         this.rol = rol;
     }
 
+    public Usuario() {
+    }
+
     public String getUsername() {
         return username;
     }
@@ -44,5 +47,5 @@ public class Usuario extends Persona {
     public void setRol(Rol rol) {
         this.rol = rol;
     }
-    
+
 }

@@ -4,6 +4,8 @@
  */
 package pe.kawaii.ventas.session;
 
+import pe.kawaii.ventas.models.Rol;
+
 /**
  *
  * @author Ivan
@@ -12,6 +14,7 @@ public final class UserSession {
 
     private static UserSession INSTANCE;
     private int id = -1;
+    private Rol rol = null;
 
     private UserSession() {
     }
@@ -31,4 +34,13 @@ public final class UserSession {
     public void setId(int id) {
         this.id = id;
     }
+
+    public Rol getRol() {
+        return rol;
+    }
+
+    public void setRol(Rol rol) {
+        this.rol = rol;
+    }
+
 }

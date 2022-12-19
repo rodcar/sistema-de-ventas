@@ -12,6 +12,8 @@ public abstract class Persona {
 
     private int id;
     private String nombreCompleto;
+    
+    public Persona() {}
 
     public Persona(int id, String nombreCompleto) {
         this.id = id;
