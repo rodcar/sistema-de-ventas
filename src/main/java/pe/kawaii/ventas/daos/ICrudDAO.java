@@ -1,6 +1,6 @@
 package pe.kawaii.ventas.daos;
 
-import java.util.List;
+import java.util.ArrayList;
 import java.util.Optional;
 
 /**
@@ -38,7 +38,7 @@ public interface ICrudDAO<T> {
      *
      * @return Lista de todos los objetos
      */
-    Optional<List<T>> findAll();
+    Optional<ArrayList<T>> findAll();
 
     /**
      * Elimina un objeto según su id

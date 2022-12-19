@@ -2,32 +2,32 @@ package pe.kawaii.ventas.daos.impl.mysql;
 
 import java.util.ArrayList;
 import java.util.Optional;
-import pe.kawaii.ventas.daos.IUsuarioDAO;
-import pe.kawaii.ventas.models.Usuario;
+import pe.kawaii.ventas.daos.IProductoDAO;
+import pe.kawaii.ventas.models.Producto;
 
 /**
  *
- * @author Ivan
+ * @author EDITA
  */
-public class UsuarioDAO implements IUsuarioDAO {
+public class ProductoDAO implements IProductoDAO {
 
     @Override
-    public void save(Usuario t) {
+    public void save(Producto t) {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
     @Override
-    public void update(Usuario t) {
+    public void update(Producto t) {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
     @Override
-    public Optional<Usuario> findById(int id) {
+    public Optional<Producto> findById(int id) {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
     @Override
-    public Optional<ArrayList<Usuario>> findAll() {
+    public Optional<ArrayList<Producto>> findAll() {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 

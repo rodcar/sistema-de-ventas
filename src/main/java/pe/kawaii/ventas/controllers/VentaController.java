@@ -4,6 +4,7 @@
  */
 package pe.kawaii.ventas.controllers;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import pe.kawaii.ventas.models.Venta;
@@ -21,7 +22,7 @@ public class VentaController {
         this.ventaService = new VentaService();
     }
 
-    public Optional<List<Venta>> findAll() {
+    public Optional<ArrayList<Venta>> findAll() {
         return this.ventaService.findAll();
     }
 

@@ -5,6 +5,8 @@
 package pe.kawaii.ventas.controllers;
 
 import java.util.ArrayList;
+import java.util.List;
+import java.util.Optional;
 import pe.kawaii.ventas.models.Producto;
 import pe.kawaii.ventas.services.ProductoService;
 
@@ -13,17 +15,16 @@ import pe.kawaii.ventas.services.ProductoService;
  * @author EDITA
  */
 public class ProductosController {
-    
+
     private ProductoService productoService;
 
     public ProductosController() {
         this.productoService = new ProductoService();
-        
-    }
-    
 
-    public ArrayList<Producto> findAll() {
+    }
+
+    public Optional<ArrayList<Producto>> findAll() {
         return productoService.findAll();
     }
-   
+
 }

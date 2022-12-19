@@ -1,27 +1,47 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package pe.kawaii.ventas.services;
 
 import java.util.ArrayList;
-import pe.kawaii.ventas.daos.ProductoDAO;
+import java.util.Optional;
+import pe.kawaii.ventas.daos.IProductoDAO;
+import pe.kawaii.ventas.daos.impl.DaoFactory;
 import pe.kawaii.ventas.models.Producto;
+import pe.kawaii.ventas.util.Util;
 
 /**
  *
  * @author EDITA
  */
-public class ProductoService {
-    
-    private ProductoDAO productoDAO;
+public class ProductoService implements CrudService<Producto> {
+
+    private IProductoDAO productoDAO;
 
     public ProductoService() {
-        productoDAO = new ProductoDAO();
+        this.productoDAO = DaoFactory.getProductoDAO(Util.dataSource);
     }
-  
-    public ArrayList<Producto> findAll() {
-        return productoDAO.findAll();
+
+    @Override
+    public void save(Producto t) {
+        this.productoDAO.save(t);
     }
-    
+
+    @Override
+    public void update(Producto t) {
+        this.productoDAO.update(t);
+    }
+
+    @Override
+    public Optional<Producto> findById(int id) {
+        return this.productoDAO.findById(id);
+    }
+
+    @Override
+    public Optional<ArrayList<Producto>> findAll() {
+        return this.productoDAO.findAll();
+    }
+
+    @Override
+    public void delete(int id) {
+        this.productoDAO.delete(id);
+    }
+
 }

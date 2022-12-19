@@ -1,11 +1,11 @@
 package pe.kawaii.ventas.daos.impl.mysql;
 
-import java.util.List;
+import java.util.ArrayList;
 import java.util.Optional;
 import pe.kawaii.ventas.daos.IClienteDAO;
 import pe.kawaii.ventas.models.Cliente;
 
-public class ClienteDAO implements IClienteDAO{
+public class ClienteDAO implements IClienteDAO {
 
     @Override
     public void save(Cliente t) {
@@ -23,7 +23,7 @@ public class ClienteDAO implements IClienteDAO{
     }
 
     @Override
-    public Optional<List<Cliente>> findAll() {
+    public Optional<ArrayList<Cliente>> findAll() {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
@@ -31,5 +31,5 @@ public class ClienteDAO implements IClienteDAO{
     public void delete(int id) {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
-    
+
 }

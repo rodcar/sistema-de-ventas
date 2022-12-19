@@ -5,6 +5,8 @@
 package pe.kawaii.ventas.views;
 
 import java.util.ArrayList;
+import java.util.List;
+import java.util.Optional;
 import pe.kawaii.ventas.controllers.ProductosController;
 import pe.kawaii.ventas.models.Producto;
 
@@ -15,6 +17,7 @@ import pe.kawaii.ventas.models.Producto;
 public class PanelProductos extends javax.swing.JPanel {
 
     private ProductosController productosController;
+
     /**
      * Creates new form PanelProductos
      */
@@ -70,9 +73,12 @@ public class PanelProductos extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        ArrayList<Producto> productos = this.productosController.findAll();
-        for (Producto p: productos) {
-            this.txtSalida.append(p.getNombre() + "\n");
+        Optional<ArrayList<Producto>> productos = this.productosController.findAll();
+
+        if (productos.isPresent()) {
+            for (Producto p : productos.get()) {
+                this.txtSalida.append(p.getNombre() + "\n");
+            }
         }
     }//GEN-LAST:event_jButton1ActionPerformed
 
