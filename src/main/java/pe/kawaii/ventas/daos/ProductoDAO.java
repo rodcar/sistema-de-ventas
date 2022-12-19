@@ -15,9 +15,9 @@ public class ProductoDAO {
 
     public ArrayList<Producto> findAll() {
         ArrayList<Producto> productos = new ArrayList<>();
-        productos.add(new Producto("Producto A"));
+        /*productos.add(new Producto("Producto A"));
         productos.add(new Producto("Producto B"));
-        productos.add(new Producto("Producto C"));
+        productos.add(new Producto("Producto C"));*/
         return productos;
     }
     
