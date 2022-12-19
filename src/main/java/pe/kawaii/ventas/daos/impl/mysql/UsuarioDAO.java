@@ -46,7 +46,7 @@ public class UsuarioDAO implements IUsuarioDAO {
     }
 
     @Override
-    public boolean login(String username, String password) {
+    public int login(String username, String password) {
         try {
             cn = DbConn.getConnection();
             ps = cn.prepareStatement("select * from usuarios where username=? and password=md5(?)");
@@ -54,18 +54,14 @@ public class UsuarioDAO implements IUsuarioDAO {
             ps.setString(2, password);
             rs = ps.executeQuery();
 
-            int rowCounter = 0;
             if (rs.next()) {
-                rowCounter++;
+                return rs.getInt(1);
             }
 
-            if (rowCounter == 1) {
-                return true;
-            }
         } catch (SQLException ex) {
             System.out.println("error de conexion");
         }
-        return false;
+        return -1;
     }
 
 }

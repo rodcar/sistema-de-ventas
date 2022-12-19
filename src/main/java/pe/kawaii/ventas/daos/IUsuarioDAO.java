@@ -12,5 +12,5 @@ import pe.kawaii.ventas.models.Usuario;
  */
 public interface IUsuarioDAO extends ICrudDAO<Usuario> {
 
-    public boolean login(String username, String password);
+    public int login(String username, String password);
 }

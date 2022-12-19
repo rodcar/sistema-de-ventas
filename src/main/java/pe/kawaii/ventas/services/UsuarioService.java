@@ -5,6 +5,7 @@ import java.util.Optional;
 import pe.kawaii.ventas.daos.IUsuarioDAO;
 import pe.kawaii.ventas.daos.impl.DaoFactory;
 import pe.kawaii.ventas.models.Usuario;
+import pe.kawaii.ventas.session.UserSession;
 import pe.kawaii.ventas.util.Util;
 
 /**
@@ -45,7 +46,13 @@ public class UsuarioService implements CrudService<Usuario> {
     }
 
     public boolean login(String username, String password) {
-        return this.usuarioDAO.login(username, password);
+        int usuarioId = this.usuarioDAO.login(username, password);
+
+        if (usuarioId >= 0) {
+            UserSession.getInstance().setId(usuarioId);
+            return true;
+        }
+        return false;
     }
 
 }
