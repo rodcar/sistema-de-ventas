@@ -18,3 +18,14 @@ create table usuarios (
     primary key (id),
     foreign key (rol_id) references roles(id)
 );
+
+    create table clientes (
+    id int not null auto_increment,
+    nombre_completo varchar(255) not null,
+    dni varchar(255) not null,
+    ruc varchar(255) not null,
+    correo varchar(255) not null,
+    celular varchar(255) not null,
+    direccion varchar(255) not null,
+    primary key (id),
+;)
