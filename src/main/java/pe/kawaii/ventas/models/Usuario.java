@@ -8,18 +8,14 @@ package pe.kawaii.ventas.models;
  *
  * @author Ivan
  */
-public class Usuario {
+public class Usuario extends Persona {
 
-    private int id;
     private String username;
     private String password;
     private Rol rol;
 
-    public Usuario() {
-    }
-
-    public Usuario(int id, String username, String password, Rol rol) {
-        this.id = id;
+    public Usuario(int id, String nombreCompleto, String username, String password, Rol rol) {
+        super(id, nombreCompleto);
         this.username = username;
         this.password = password;
         this.rol = rol;
@@ -48,13 +44,5 @@ public class Usuario {
     public void setRol(Rol rol) {
         this.rol = rol;
     }
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
-
+    
 }
