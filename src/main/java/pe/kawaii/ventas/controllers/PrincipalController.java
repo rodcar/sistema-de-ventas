@@ -5,8 +5,10 @@
 package pe.kawaii.ventas.controllers;
 
 import javax.swing.JFrame;
+import pe.kawaii.ventas.models.Rol;
 import pe.kawaii.ventas.session.UserSession;
-import pe.kawaii.ventas.views.VentanaPrincipal;
+import pe.kawaii.ventas.views.VentanaPrincipalAdministrador;
+import pe.kawaii.ventas.views.VentanaPrincipalVendedor;
 
 /**
  *
@@ -14,11 +16,18 @@ import pe.kawaii.ventas.views.VentanaPrincipal;
  */
 public class PrincipalController {
 
-    private static VentanaPrincipal view = new VentanaPrincipal();
+    private static VentanaPrincipalAdministrador viewAdministrador = new VentanaPrincipalAdministrador();
+    private static VentanaPrincipalVendedor viewVendedor = new VentanaPrincipalVendedor();
 
-    public static void mostrarVentana() {       
-        view.setExtendedState(JFrame.MAXIMIZED_BOTH);
-        view.setVisible(true);
+    public static void mostrarVentana() {
+        Rol rol = UserSession.getInstance().getRol();
+        if (rol == Rol.ADMINISTRADOR) {
+            viewAdministrador.setExtendedState(JFrame.MAXIMIZED_BOTH);
+            viewAdministrador.setVisible(true);
+        } else if (rol == Rol.VENDEDOR) {
+            viewVendedor.setExtendedState(JFrame.MAXIMIZED_BOTH);
+            viewVendedor.setVisible(true);
+        }
     }
 
 }
