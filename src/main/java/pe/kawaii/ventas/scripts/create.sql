@@ -48,3 +48,14 @@ create table ventas (
     anulada boolean not null,
     primary key (id)
 );
+
+create table detalles (
+id int not null auto_increment,
+venta_id int not null,
+producto_id int not null,
+cantidad int not null,
+precio_unitario decimal(10,2) not null,
+subtotal decimal(10,2) not null,
+primary key (id),
+foreign key (venta_id) references ventas(id)
+);
