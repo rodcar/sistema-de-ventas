@@ -28,6 +28,8 @@ public class LoginController {
 
         if (usuarioService.login(username, password)) {
             System.out.println("Ingresó el usuario con id: " + UserSession.getInstance().getId());
+            PrincipalController.mostrarVentana();
+            view.dispose();
         } else {
             JOptionPane.showMessageDialog(view, "El usuario o contraseña no son correctos", "Ingreso", JOptionPane.ERROR_MESSAGE);
         }
