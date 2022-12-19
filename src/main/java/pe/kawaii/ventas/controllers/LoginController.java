@@ -4,8 +4,6 @@
  */
 package pe.kawaii.ventas.controllers;
 
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import javax.swing.JOptionPane;
 import pe.kawaii.ventas.services.UsuarioService;
 import pe.kawaii.ventas.views.auth.VentanaAutenticacion;
@@ -28,7 +26,7 @@ public class LoginController {
         String password = String.valueOf(view.getPnlLogin().getTxtPassword().getPassword());
 
         if (usuarioService.login(username, password)) {
-
+            System.out.println("Ingresó");
         } else {
             JOptionPane.showMessageDialog(view, "El usuario o contraseña no son correctos", "Ingreso", JOptionPane.ERROR_MESSAGE);
         }
