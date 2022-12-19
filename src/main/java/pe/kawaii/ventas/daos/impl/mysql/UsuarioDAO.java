@@ -36,4 +36,9 @@ public class UsuarioDAO implements IUsuarioDAO {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
+    @Override
+    public boolean login(String username, String password) {
+        return false;
+    }
+
 }

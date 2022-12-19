@@ -44,4 +44,8 @@ public class UsuarioService implements CrudService<Usuario> {
         this.usuarioDAO.delete(id);
     }
 
+    public boolean login(String username, String password) {
+        return this.usuarioDAO.login(username, password);
+    }
+
 }
