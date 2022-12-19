@@ -46,16 +46,18 @@ create table ventas (
     fecha_registro datetime not null,
     total decimal(10,2) not null,
     anulada boolean not null,
-    primary key (id)
+    primary key (id),
+    foreign key (usuario_id) references usuarios(id),
+    foreign key (cliente_id) references clientes(id)
 );
 
 create table detalles (
-id int not null auto_increment,
-venta_id int not null,
-producto_id int not null,
-cantidad int not null,
-precio_unitario decimal(10,2) not null,
-subtotal decimal(10,2) not null,
-primary key (id),
-foreign key (venta_id) references ventas(id)
+    id int not null auto_increment,
+    venta_id int not null,
+    producto_id int not null,
+    cantidad int not null,
+    precio_unitario decimal(10,2) not null,
+    subtotal decimal(10,2) not null,
+    primary key (id),
+    foreign key (venta_id) references ventas(id)
 );
