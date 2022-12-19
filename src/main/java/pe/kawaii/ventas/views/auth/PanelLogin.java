@@ -4,6 +4,7 @@
  */
 package pe.kawaii.ventas.views.auth;
 
+import java.awt.event.KeyEvent;
 import javax.swing.JButton;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
@@ -36,6 +37,12 @@ public class PanelLogin extends javax.swing.JPanel {
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         btnIngresar = new javax.swing.JButton();
+
+        txtPassword.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txtPasswordKeyReleased(evt);
+            }
+        });
 
         jLabel1.setText("Usuario");
 
@@ -88,6 +95,12 @@ public class PanelLogin extends javax.swing.JPanel {
     private void btnIngresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIngresarActionPerformed
         LoginController.login();
     }//GEN-LAST:event_btnIngresarActionPerformed
+
+    private void txtPasswordKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtPasswordKeyReleased
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
+            LoginController.login();
+        }
+    }//GEN-LAST:event_txtPasswordKeyReleased
 
     public JButton getBtnIngresar() {
         return btnIngresar;
