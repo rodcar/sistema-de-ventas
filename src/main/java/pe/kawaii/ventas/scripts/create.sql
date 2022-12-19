@@ -11,6 +11,7 @@ create table roles (
 
 create table usuarios (
     id int not null auto_increment,
+    nombre varchar(255) not null,
     username varchar(255) not null,
     password varchar(255) not null,
     rol_id int not null,
