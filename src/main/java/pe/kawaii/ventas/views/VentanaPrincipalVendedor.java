@@ -30,9 +30,6 @@ public class VentanaPrincipalVendedor extends javax.swing.JFrame {
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         jMenuItem2 = new javax.swing.JMenuItem();
-        jMenuItem3 = new javax.swing.JMenuItem();
-        jMenu2 = new javax.swing.JMenu();
-        jMenuItem1 = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Sistema de ventas");
@@ -53,17 +50,7 @@ public class VentanaPrincipalVendedor extends javax.swing.JFrame {
         jMenuItem2.setText("Registrar");
         jMenu1.add(jMenuItem2);
 
-        jMenuItem3.setText("Buscar");
-        jMenu1.add(jMenuItem3);
-
         jMenuBar1.add(jMenu1);
-
-        jMenu2.setText("Ayuda");
-
-        jMenuItem1.setText("Acerca del sistema");
-        jMenu2.add(jMenuItem1);
-
-        jMenuBar1.add(jMenu2);
 
         setJMenuBar(jMenuBar1);
 
@@ -118,11 +105,8 @@ public class VentanaPrincipalVendedor extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JMenu jMenu1;
-    private javax.swing.JMenu jMenu2;
     private javax.swing.JMenuBar jMenuBar1;
-    private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenuItem jMenuItem2;
-    private javax.swing.JMenuItem jMenuItem3;
     private javax.swing.JPanel pnlGeneral;
     // End of variables declaration//GEN-END:variables
 }

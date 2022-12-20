@@ -35,16 +35,11 @@ public class VentanaPrincipalAdministrador extends javax.swing.JFrame {
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         jMenuItem1 = new javax.swing.JMenuItem();
-        jMenuItem2 = new javax.swing.JMenuItem();
-        jMenu2 = new javax.swing.JMenu();
-        jMenuItem3 = new javax.swing.JMenuItem();
         jMenu3 = new javax.swing.JMenu();
         jMenuItem4 = new javax.swing.JMenuItem();
         jMenuItem5 = new javax.swing.JMenuItem();
         jMenuItem6 = new javax.swing.JMenuItem();
         jMenuItem7 = new javax.swing.JMenuItem();
-        jMenu4 = new javax.swing.JMenu();
-        jMenuItem8 = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Sistema de ventas");
@@ -65,17 +60,7 @@ public class VentanaPrincipalAdministrador extends javax.swing.JFrame {
         jMenuItem1.setText("Registrar");
         jMenu1.add(jMenuItem1);
 
-        jMenuItem2.setText("Buscar");
-        jMenu1.add(jMenuItem2);
-
         jMenuBar1.add(jMenu1);
-
-        jMenu2.setText("Inventario");
-
-        jMenuItem3.setText("Actualizar stock");
-        jMenu2.add(jMenuItem3);
-
-        jMenuBar1.add(jMenu2);
 
         jMenu3.setText("Mantenimiento");
 
@@ -97,13 +82,6 @@ public class VentanaPrincipalAdministrador extends javax.swing.JFrame {
         jMenu3.add(jMenuItem7);
 
         jMenuBar1.add(jMenu3);
-
-        jMenu4.setText("Ayuda");
-
-        jMenuItem8.setText("Acerca del sistema");
-        jMenu4.add(jMenuItem8);
-
-        jMenuBar1.add(jMenu4);
 
         setJMenuBar(jMenuBar1);
 
@@ -133,18 +111,13 @@ public class VentanaPrincipalAdministrador extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JMenu jMenu1;
-    private javax.swing.JMenu jMenu2;
     private javax.swing.JMenu jMenu3;
-    private javax.swing.JMenu jMenu4;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem jMenuItem1;
-    private javax.swing.JMenuItem jMenuItem2;
-    private javax.swing.JMenuItem jMenuItem3;
     private javax.swing.JMenuItem jMenuItem4;
     private javax.swing.JMenuItem jMenuItem5;
     private javax.swing.JMenuItem jMenuItem6;
     private javax.swing.JMenuItem jMenuItem7;
-    private javax.swing.JMenuItem jMenuItem8;
     private javax.swing.JPanel pnlGeneral;
     // End of variables declaration//GEN-END:variables
 }
