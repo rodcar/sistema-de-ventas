@@ -46,7 +46,7 @@ public class PanelMantenimientoUsuario extends javax.swing.JPanel {
         btnConsultar = new javax.swing.JButton();
         btnActualizar = new javax.swing.JButton();
         btnEliminar = new javax.swing.JButton();
-        cmbRol = new javax.swing.JComboBox<>();
+        cboRol = new javax.swing.JComboBox<>();
 
         jLabel1.setText("Documento:");
 
@@ -95,7 +95,7 @@ public class PanelMantenimientoUsuario extends javax.swing.JPanel {
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.Object.class, java.lang.String.class
+                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -116,7 +116,7 @@ public class PanelMantenimientoUsuario extends javax.swing.JPanel {
 
         btnEliminar.setText("Eliminar");
 
-        cmbRol.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Administrador", "Vendedor" }));
+        cboRol.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Administrador", "Vendedor" }));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -145,7 +145,7 @@ public class PanelMantenimientoUsuario extends javax.swing.JPanel {
                             .addComponent(txtCelular)
                             .addComponent(txtDireccion)
                             .addComponent(txtIdUsuario)
-                            .addComponent(cmbRol, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                            .addComponent(cboRol, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(32, 32, 32)
                         .addComponent(jLabel3))
@@ -202,7 +202,7 @@ public class PanelMantenimientoUsuario extends javax.swing.JPanel {
                         .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel2)
-                            .addComponent(cmbRol, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(cboRol, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(40, 40, 40)
                         .addComponent(btnCrear)
                         .addGap(0, 30, Short.MAX_VALUE))
@@ -216,7 +216,17 @@ public class PanelMantenimientoUsuario extends javax.swing.JPanel {
     }//GEN-LAST:event_txtDocumentoActionPerformed
 
     private void btnCrearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCrearActionPerformed
-        // TODO add your handling code here:
+       String documento = this.txtDocumento.getText();
+       String nombres   = this.txtNombres.getText();
+       String apellidos = this.txtApellidos.getText();
+       String celular   = this.txtCelular.getText();
+       String direccion = this.txtDireccion.getText();
+       String idusuario = this.txtIdUsuario.getText();
+       String rol       = cboRol.getSelectedItem().toString();
+       
+      
+        
+        
     }//GEN-LAST:event_btnCrearActionPerformed
 
     private void txtNombresActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNombresActionPerformed
@@ -233,7 +243,7 @@ public class PanelMantenimientoUsuario extends javax.swing.JPanel {
     private javax.swing.JButton btnConsultar;
     private javax.swing.JButton btnCrear;
     private javax.swing.JButton btnEliminar;
-    private javax.swing.JComboBox<String> cmbRol;
+    private javax.swing.JComboBox<String> cboRol;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;

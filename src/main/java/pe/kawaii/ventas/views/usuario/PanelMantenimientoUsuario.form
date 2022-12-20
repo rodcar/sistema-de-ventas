@@ -42,7 +42,7 @@
                           <Component id="txtCelular" max="32767" attributes="0"/>
                           <Component id="txtDireccion" max="32767" attributes="0"/>
                           <Component id="txtIdUsuario" max="32767" attributes="0"/>
-                          <Component id="cmbRol" alignment="0" max="32767" attributes="0"/>
+                          <Component id="cboRol" alignment="0" max="32767" attributes="0"/>
                       </Group>
                   </Group>
                   <Group type="102" alignment="0" attributes="0">
@@ -115,7 +115,7 @@
                       <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Component id="jLabel2" min="-2" max="-2" attributes="0"/>
-                          <Component id="cmbRol" min="-2" max="-2" attributes="0"/>
+                          <Component id="cboRol" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace min="-2" pref="40" max="-2" attributes="0"/>
                       <Component id="btnCrear" min="-2" max="-2" attributes="0"/>
@@ -206,11 +206,11 @@
           <Properties>
             <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
               <Table columnCount="6" rowCount="4">
-                <Column editable="true" title="ID" type="java.lang.Integer"/>
+                <Column editable="true" title="ID" type="java.lang.String"/>
                 <Column editable="true" title="Documento" type="java.lang.String"/>
                 <Column editable="true" title="Nombres" type="java.lang.String"/>
                 <Column editable="true" title="Apellidos" type="java.lang.String"/>
-                <Column editable="true" title="Rol" type="java.lang.Object"/>
+                <Column editable="true" title="Rol" type="java.lang.String"/>
                 <Column editable="true" title="Tel&#xe9;fono" type="java.lang.String"/>
               </Table>
             </Property>
@@ -274,7 +274,7 @@
         <Property name="text" type="java.lang.String" value="Eliminar"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JComboBox" name="cmbRol">
+    <Component class="javax.swing.JComboBox" name="cboRol">
       <Properties>
         <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
           <StringArray count="2">
