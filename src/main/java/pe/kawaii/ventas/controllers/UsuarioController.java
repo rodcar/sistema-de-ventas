@@ -4,10 +4,25 @@
  */
 package pe.kawaii.ventas.controllers;
 
+import java.util.ArrayList;
+import java.util.Optional;
+import pe.kawaii.ventas.models.Usuario;
+import pe.kawaii.ventas.services.UsuarioService;
+
 /**
  *
  * @author BRYAN
  */
 public class UsuarioController {
-    
+
+    private static UsuarioService usuarioService = new UsuarioService();
+
+    public static Optional<ArrayList<Usuario>> getAll() {
+        return usuarioService.findAll();
+    }
+
+    public static void registrar(Usuario u) {
+        usuarioService.save(u);
+    }
+
 }

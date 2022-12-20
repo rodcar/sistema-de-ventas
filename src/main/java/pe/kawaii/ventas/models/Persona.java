@@ -36,4 +36,9 @@ public abstract class Persona {
         this.id = id;
     }
 
+    @Override
+    public String toString() {
+        return "Persona{" + "id=" + id + ", nombreCompleto=" + nombreCompleto + '}';
+    }
+
 }
