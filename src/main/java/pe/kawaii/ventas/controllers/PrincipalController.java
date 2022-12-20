@@ -5,10 +5,13 @@
 package pe.kawaii.ventas.controllers;
 
 import javax.swing.JFrame;
+import javax.swing.JPanel;
+import javax.swing.SwingUtilities;
 import pe.kawaii.ventas.models.Rol;
 import pe.kawaii.ventas.session.UserSession;
 import pe.kawaii.ventas.views.VentanaPrincipalAdministrador;
 import pe.kawaii.ventas.views.VentanaPrincipalVendedor;
+import pe.kawaii.ventas.views.usuario.PanelMantenimientoUsuario;
 
 /**
  *
@@ -28,6 +31,14 @@ public class PrincipalController {
             viewVendedor.setExtendedState(JFrame.MAXIMIZED_BOTH);
             viewVendedor.setVisible(true);
         }
+    }
+
+    public static void mostrarMantenimientoUsuario() {
+        PanelMantenimientoUsuario pnlUsuario = new PanelMantenimientoUsuario();
+
+        viewAdministrador.getPnlGeneral().removeAll();
+        viewAdministrador.getPnlGeneral().add(pnlUsuario);
+        SwingUtilities.updateComponentTreeUI(viewAdministrador.getPnlGeneral());
     }
 
 }
