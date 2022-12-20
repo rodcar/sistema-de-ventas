@@ -35,7 +35,7 @@
     </DimensionLayout>
   </Layout>
   <SubComponents>
-    <Component class="pe.kawaii.ventas.views.auth.PanelLogin" name="pnlLogin">
+    <Component class="pe.kawaii.ventas.views.login.PanelLogin" name="pnlLogin">
     </Component>
   </SubComponents>
 </Form>

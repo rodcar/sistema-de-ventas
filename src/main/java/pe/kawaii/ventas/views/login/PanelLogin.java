@@ -2,7 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
  */
-package pe.kawaii.ventas.views.auth;
+package pe.kawaii.ventas.views.login;
 
 import java.awt.event.KeyEvent;
 import javax.swing.JButton;

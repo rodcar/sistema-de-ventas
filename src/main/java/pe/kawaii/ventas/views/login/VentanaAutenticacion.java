@@ -2,7 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
-package pe.kawaii.ventas.views.auth;
+package pe.kawaii.ventas.views.login;
 
 import java.awt.geom.RoundRectangle2D;
 
@@ -31,7 +31,7 @@ public class VentanaAutenticacion extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        pnlLogin = new pe.kawaii.ventas.views.auth.PanelLogin();
+        pnlLogin = new pe.kawaii.ventas.views.login.PanelLogin();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Sistema de ventas - Ingreso");
@@ -56,6 +56,6 @@ public class VentanaAutenticacion extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private pe.kawaii.ventas.views.auth.PanelLogin pnlLogin;
+    private pe.kawaii.ventas.views.login.PanelLogin pnlLogin;
     // End of variables declaration//GEN-END:variables
 }
