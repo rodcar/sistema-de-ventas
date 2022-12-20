@@ -48,4 +48,9 @@ public class Usuario extends Persona {
         this.rol = rol;
     }
 
+    @Override
+    public String toString() {
+        return "Usuario{" + "username=" + username + ", rol=" + rol + '}' + super.toString();
+    }
+    
 }

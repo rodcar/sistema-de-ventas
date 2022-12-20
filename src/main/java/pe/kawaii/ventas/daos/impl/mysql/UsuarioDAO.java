@@ -5,6 +5,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 import pe.kawaii.ventas.daos.IUsuarioDAO;
 import pe.kawaii.ventas.db.DbConn;
@@ -20,10 +21,26 @@ public class UsuarioDAO implements IUsuarioDAO {
     private Connection cn;
     private PreparedStatement ps;
     private ResultSet rs;
+    private ArrayList<Usuario> lista;
+
+    public UsuarioDAO() {
+        lista = new ArrayList<>();
+    }
 
     @Override
-    public void save(Usuario t) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    public void save(Usuario u) {
+        try {
+            cn = DbConn.getConnection();
+            ps = cn.prepareStatement("insert into usuarios values(null, ?, ?, ?, ?)");
+            ps.setString(1, u.getNombreCompleto());
+            ps.setString(2, u.getUsername());
+            ps.setString(3, u.getPassword());
+            ps.setInt(4, u.getRol().ordinal());
+            ps.executeUpdate();
+            System.out.println("Curso Grabado");
+        } catch (SQLException ex) {
+            System.out.println("error de conexion: " + ex);
+        }
     }
 
     @Override
@@ -38,7 +55,25 @@ public class UsuarioDAO implements IUsuarioDAO {
 
     @Override
     public Optional<ArrayList<Usuario>> findAll() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        try {
+            cn = DbConn.getConnection();
+            ps = cn.prepareStatement("select * from usuarios");
+            rs = ps.executeQuery();
+            lista.clear();
+            while (rs.next()) {
+                lista.add(new Usuario(
+                        rs.getInt("id"),
+                        rs.getString("nombre"),
+                        rs.getString("username"),
+                        rs.getString("password"),
+                        (rs.getInt("rol_id") == 0) ? Rol.ADMINISTRADOR : Rol.VENDEDOR)
+                );
+            }
+            return Optional.of(lista);
+        } catch (SQLException ex) {
+            System.out.println("error de conexion");
+            return Optional.empty();
+        }
     }
 
     @Override

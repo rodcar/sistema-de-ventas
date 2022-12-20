@@ -7,7 +7,7 @@ package pe.kawaii.ventas.controllers;
 import javax.swing.JOptionPane;
 import pe.kawaii.ventas.services.UsuarioService;
 import pe.kawaii.ventas.session.UserSession;
-import pe.kawaii.ventas.views.auth.VentanaAutenticacion;
+import pe.kawaii.ventas.views.login.VentanaAutenticacion;
 
 /**
  *

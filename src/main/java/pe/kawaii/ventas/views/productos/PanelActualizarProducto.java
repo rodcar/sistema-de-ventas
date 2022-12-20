@@ -2,18 +2,18 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
  */
-package pe.kawaii.ventas.views.ventas;
+package pe.kawaii.ventas.views.productos;
 
 /**
  *
  * @author Ivan
  */
-public class PanelMantenimientoVentas extends javax.swing.JPanel {
+public class PanelActualizarProducto extends javax.swing.JPanel {
 
     /**
-     * Creates new form PanelMantenimientoVentas
+     * Creates new form PanelActualizarProductos
      */
-    public PanelMantenimientoVentas() {
+    public PanelActualizarProducto() {
         initComponents();
     }
 
