@@ -11,7 +11,11 @@ import pe.kawaii.ventas.models.Rol;
 import pe.kawaii.ventas.session.UserSession;
 import pe.kawaii.ventas.views.VentanaPrincipalAdministrador;
 import pe.kawaii.ventas.views.VentanaPrincipalVendedor;
+import pe.kawaii.ventas.views.clientes.PanelMantenimientoCliente;
+import pe.kawaii.ventas.views.productos.PanelMantenimientoProducto;
 import pe.kawaii.ventas.views.usuario.PanelMantenimientoUsuario;
+import pe.kawaii.ventas.views.ventas.PanelMantenimientoVenta;
+import pe.kawaii.ventas.views.ventas.PanelRegistroVenta;
 
 /**
  *
@@ -41,4 +45,43 @@ public class PrincipalController {
         SwingUtilities.updateComponentTreeUI(viewAdministrador.getPnlGeneral());
     }
 
+    public static void mostrarRegistroVentas() {
+        PanelRegistroVenta panel = new PanelRegistroVenta();
+
+        viewAdministrador.getPnlGeneral().removeAll();
+        viewAdministrador.getPnlGeneral().add(panel);
+        SwingUtilities.updateComponentTreeUI(viewAdministrador.getPnlGeneral());
+    }
+
+    public static void mostrarMantenimientoClientes() {
+        PanelMantenimientoCliente panel = new PanelMantenimientoCliente();
+
+        viewAdministrador.getPnlGeneral().removeAll();
+        viewAdministrador.getPnlGeneral().add(panel);
+        SwingUtilities.updateComponentTreeUI(viewAdministrador.getPnlGeneral());
+    }
+
+    public static void mostrarMantenimientoProductos() {
+        PanelMantenimientoProducto panel = new PanelMantenimientoProducto();
+
+        viewAdministrador.getPnlGeneral().removeAll();
+        viewAdministrador.getPnlGeneral().add(panel);
+        SwingUtilities.updateComponentTreeUI(viewAdministrador.getPnlGeneral());
+    }
+
+    public static void mostrarMantenimientoVentas() {
+        PanelMantenimientoVenta panel = new PanelMantenimientoVenta();
+
+        viewAdministrador.getPnlGeneral().removeAll();
+        viewAdministrador.getPnlGeneral().add(panel);
+        SwingUtilities.updateComponentTreeUI(viewAdministrador.getPnlGeneral());
+    }
+
+    public static void mostrarRegistroVentasVendedor() {
+        PanelRegistroVenta panel = new PanelRegistroVenta();
+
+        viewVendedor.getPnlGeneral().removeAll();
+        viewVendedor.getPnlGeneral().add(panel);
+        SwingUtilities.updateComponentTreeUI(viewVendedor.getPnlGeneral());
+    }
 }
