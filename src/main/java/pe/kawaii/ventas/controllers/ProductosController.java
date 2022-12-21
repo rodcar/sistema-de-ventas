@@ -16,14 +16,9 @@ import pe.kawaii.ventas.services.ProductoService;
  */
 public class ProductosController {
 
-    private ProductoService productoService;
+    private static ProductoService productoService = new ProductoService();
 
-    public ProductosController() {
-        this.productoService = new ProductoService();
-
-    }
-
-    public Optional<ArrayList<Producto>> findAll() {
+    public static Optional<ArrayList<Producto>> findAll() {
         return productoService.findAll();
     }
 
