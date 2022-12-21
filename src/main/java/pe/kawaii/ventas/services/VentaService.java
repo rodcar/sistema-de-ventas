@@ -10,6 +10,7 @@ import pe.kawaii.ventas.daos.IVentaDAO;
 import pe.kawaii.ventas.daos.impl.DaoFactory;
 import pe.kawaii.ventas.daos.impl.mysql.VentaDAO;
 import pe.kawaii.ventas.models.Venta;
+import pe.kawaii.ventas.models.VentaDetalle;
 import pe.kawaii.ventas.util.Util;
 
 /**
@@ -30,7 +31,10 @@ public class VentaService implements CrudService<Venta> {
 
     @Override
     public void save(Venta t) {
-        this.ventaDAO.save(t);
+        int ventaId = this.ventaDAO.saveVenta(t);
+        for (VentaDetalle d : t.getDetalles()) {
+            this.ventaDAO.saveDetalle(ventaId, d);
+        }
     }
 
     @Override

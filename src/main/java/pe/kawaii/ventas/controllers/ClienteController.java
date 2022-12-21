@@ -14,23 +14,27 @@ import pe.kawaii.ventas.services.ClienteService;
  * @author BRYAN
  */
 public class ClienteController {
-    
+
     private static ClienteService clienteService = new ClienteService();
-    
+
     public static void registrar(Cliente cliente) {
         clienteService.save(cliente);
     }
-    
+
     public static Optional<ArrayList<Cliente>> getAll() {
         return clienteService.findAll();
     }
-    
+
     public static void eliminar(int id) {
         clienteService.delete(id);
     }
-    
+
     public static void actualizar(Cliente cliente) {
         clienteService.update(cliente);
     }
-    
+
+    public static Optional<Cliente> buscarPorDni(String dni) {
+        return clienteService.findByDNI(dni);
+    }
+
 }

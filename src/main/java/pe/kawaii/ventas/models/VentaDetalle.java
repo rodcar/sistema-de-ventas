@@ -8,7 +8,7 @@ package pe.kawaii.ventas.models;
  *
  * @author Ivan
  */
-class VentaDetalle {
+public class VentaDetalle {
 
     private Producto producto;
     private int cantidad;

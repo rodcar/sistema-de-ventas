@@ -5,6 +5,7 @@
 package pe.kawaii.ventas.daos;
 
 import pe.kawaii.ventas.models.Venta;
+import pe.kawaii.ventas.models.VentaDetalle;
 
 /**
  *
@@ -12,4 +13,8 @@ import pe.kawaii.ventas.models.Venta;
  */
 public interface IVentaDAO extends ICrudDAO<Venta> {
 
+    public void saveDetalle(int ventaId, VentaDetalle d);
+    
+    public int saveVenta(Venta v);
+    
 }

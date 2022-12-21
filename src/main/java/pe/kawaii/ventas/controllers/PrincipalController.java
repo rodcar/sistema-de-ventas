@@ -34,6 +34,7 @@ public class PrincipalController {
         } else if (rol == Rol.VENDEDOR) {
             viewVendedor.setExtendedState(JFrame.MAXIMIZED_BOTH);
             viewVendedor.setVisible(true);
+            PrincipalController.mostrarRegistroVentasVendedor();
         }
     }
 

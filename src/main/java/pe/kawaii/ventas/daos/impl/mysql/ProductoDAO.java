@@ -60,7 +60,25 @@ public class ProductoDAO implements IProductoDAO {
 
     @Override
     public Optional<Producto> findById(int id) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        try {
+            Producto producto = null;
+            cn = DbConn.getConnection();
+            ps = cn.prepareStatement("select * from productos where id=?");
+            ps.setInt(1, id);
+            rs = ps.executeQuery();
+            while (rs.next()) {
+                producto = new Producto(rs.getInt("id"), rs.getString("nombre"), rs.getString("descripcion"), rs.getDouble("precio"), rs.getInt("stock"));
+            }
+
+            if (producto != null) {
+                return Optional.of(producto);
+            } else {
+                return Optional.empty();
+            }
+        } catch (SQLException ex) {
+            System.out.println("error de conexion" + ex);
+            return Optional.empty();
+        }
     }
 
     @Override

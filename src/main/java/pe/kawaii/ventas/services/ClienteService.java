@@ -48,4 +48,8 @@ public class ClienteService implements CrudService<Cliente> {
         this.clienteDAO.delete(id);
     }
 
+    public Optional<Cliente> findByDNI(String dni) {
+        return this.clienteDAO.findByDNI(dni);
+    }
+
 }

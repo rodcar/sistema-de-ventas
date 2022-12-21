@@ -7,7 +7,9 @@ package pe.kawaii.ventas.controllers;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+import pe.kawaii.ventas.models.Producto;
 import pe.kawaii.ventas.models.Venta;
+import pe.kawaii.ventas.services.ProductoService;
 import pe.kawaii.ventas.services.VentaService;
 
 /**
@@ -16,18 +18,15 @@ import pe.kawaii.ventas.services.VentaService;
  */
 public class VentaController {
 
-    private VentaService ventaService;
-
-    public VentaController() {
-        this.ventaService = new VentaService();
-    }
+    private static VentaService ventaService = new VentaService();
+    private static ProductoService productoService = new ProductoService();
 
     public Optional<ArrayList<Venta>> findAll() {
         return this.ventaService.findAll();
     }
 
-    public void registrarVenta(Venta venta) {
-        this.ventaService.save(venta);
+    public static void registrarVenta(Venta venta) {
+        ventaService.save(venta);
     }
 
     public void actualizarVenta(Venta venta) {
@@ -36,6 +35,11 @@ public class VentaController {
 
     public void anularVenta(Venta venta) {
         this.ventaService.anular(venta);
+    }
+
+    public static Optional<Producto> buscarProductoPorId(String codigo) {
+        System.out.println(Integer.parseInt(codigo));
+        return productoService.findById(Integer.parseInt(codigo));
     }
 
 }

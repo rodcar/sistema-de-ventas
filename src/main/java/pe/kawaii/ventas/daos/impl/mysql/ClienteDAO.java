@@ -11,12 +11,12 @@ import pe.kawaii.ventas.db.DbConn;
 import pe.kawaii.ventas.models.Cliente;
 
 public class ClienteDAO implements IClienteDAO {
-    
+
     private Connection cn;
     private PreparedStatement ps;
     private ResultSet rs;
     private ArrayList<Cliente> lista;
-    
+
     public ClienteDAO() {
         lista = new ArrayList<>();
     }
@@ -42,7 +42,7 @@ public class ClienteDAO implements IClienteDAO {
 
     @Override
     public void update(Cliente u) {
-        
+
         try {
             cn = DbConn.getConnection();
             ps = cn.prepareStatement("update clientes set nombre_completo=?,dni=?,ruc=?,correo=?,celular=?,direccion=? where id=?");
@@ -58,13 +58,13 @@ public class ClienteDAO implements IClienteDAO {
         } catch (SQLException ex) {
             System.out.println("error de conexion");
         }
-        
+
     }
 
     @Override
     public Optional<ArrayList<Cliente>> findAll() {
         try {
-        cn = DbConn.getConnection();
+            cn = DbConn.getConnection();
             ps = cn.prepareStatement("select * from clientes");
             rs = ps.executeQuery();
             lista.clear();
@@ -88,7 +88,7 @@ public class ClienteDAO implements IClienteDAO {
 
     @Override
     public void delete(int id) {
-       try {
+        try {
             cn = DbConn.getConnection();
             ps = cn.prepareStatement("delete from clientes where id=?");
             ps.setInt(1, id);
@@ -96,12 +96,42 @@ public class ClienteDAO implements IClienteDAO {
             System.out.println("Cliente Eliminado");
         } catch (SQLException ex) {
             System.out.println("error de conexion");
-        } 
+        }
     }
 
     @Override
     public Optional<Cliente> findById(int id) {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    @Override
+    public Optional<Cliente> findByDNI(String dni) {
+        try {
+            Cliente cliente = null;
+            cn = DbConn.getConnection();
+            ps = cn.prepareStatement("select * from clientes where dni=?");
+            ps.setString(1, dni);
+            rs = ps.executeQuery();
+            while (rs.next()) {
+                cliente = new Cliente(
+                        rs.getInt("id"),
+                        rs.getString("nombre_completo"),
+                        rs.getString("dni"),
+                        rs.getString("ruc"),
+                        rs.getString("correo"),
+                        rs.getString("celular"),
+                        rs.getString("direccion"));
+            }
+
+            if (cliente != null) {
+                return Optional.of(cliente);
+            } else {
+                return Optional.empty();
+            }
+        } catch (SQLException ex) {
+            System.out.println("error de conexion" + ex);
+            return Optional.empty();
+        }
     }
 
 }
