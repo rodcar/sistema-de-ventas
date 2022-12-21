@@ -12,6 +12,19 @@
         <exec.mainClass>pe.kawaii.ventas.sistema.de.ventas.SistemaDeVentas</exec.mainClass>
     </properties>
     <dependencies>
+        <build>
+        <resources>
+            <resource>
+                <directory>src/main/java</directory>
+                <includes>
+                    <include>/.xml</include>
+                    <include>/.properties</include>
+                    <include>**/.gif</include>
+                    <include>/.png</include>
+                </includes>
+            </resource>
+        </resources>
+    </build>
         <!-- https://mvnrepository.com/artifact/mysql/mysql-connector-java -->
         <dependency>
             <groupId>mysql</groupId>
