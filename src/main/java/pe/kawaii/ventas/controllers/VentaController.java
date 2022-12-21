@@ -21,8 +21,8 @@ public class VentaController {
     private static VentaService ventaService = new VentaService();
     private static ProductoService productoService = new ProductoService();
 
-    public Optional<ArrayList<Venta>> findAll() {
-        return this.ventaService.findAll();
+    public static Optional<ArrayList<Venta>> findAll() {
+        return ventaService.findAll();
     }
 
     public static void registrarVenta(Venta venta) {
@@ -33,8 +33,8 @@ public class VentaController {
         this.ventaService.update(venta);
     }
 
-    public void anularVenta(Venta venta) {
-        this.ventaService.anular(venta);
+    public static void anularVenta(int id) {
+        ventaService.anular(id);
     }
 
     public static Optional<Producto> buscarProductoPorId(String codigo) {

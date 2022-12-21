@@ -5,10 +5,18 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.Optional;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import pe.kawaii.ventas.daos.IVentaDAO;
 import pe.kawaii.ventas.db.DbConn;
+import pe.kawaii.ventas.models.Cliente;
+import pe.kawaii.ventas.models.Rol;
+import pe.kawaii.ventas.models.Usuario;
 import pe.kawaii.ventas.models.Venta;
 import pe.kawaii.ventas.models.VentaDetalle;
 
@@ -54,12 +62,49 @@ public class VentaDAO implements IVentaDAO {
 
     @Override
     public Optional<ArrayList<Venta>> findAll() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        try {
+            cn = DbConn.getConnection();
+            ps = cn.prepareStatement("select ventas.*, clientes.nombre_completo, usuarios.username from ventas join clientes on ventas.cliente_id = clientes.id join usuarios on ventas.usuario_id = usuarios.id");
+            rs = ps.executeQuery();
+            lista.clear();
+            while (rs.next()) {
+                Usuario v = new Usuario();
+                v.setId(rs.getInt("usuario_id"));
+                v.setUsername(rs.getString("username"));
+                Cliente c = new Cliente();
+                c.setId(rs.getInt("cliente_id"));
+                c.setNombreCompleto(rs.getString("nombre_completo"));
+                ArrayList<VentaDetalle> detalles = new ArrayList<>();
+                SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+                String fechaRegistro = rs.getString("fecha_registro");
+                try {
+                    Date registro = sdf.parse(fechaRegistro);
+                    Venta nv = new Venta(rs.getInt("id"), v, c, detalles, registro, rs.getDouble("total"));
+                    nv.setAnulada(rs.getBoolean("anulada"));
+                    lista.add(nv);
+                } catch (ParseException ex) {
+                    Logger.getLogger(VentaDAO.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+            return Optional.of(lista);
+        } catch (SQLException ex) {
+            System.out.println("error de conexion");
+            return Optional.empty();
+        }
     }
 
     @Override
     public void delete(int id) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        try {
+            cn = DbConn.getConnection();
+            ps = cn.prepareStatement("update ventas set anulada=? where id=?");
+            ps.setBoolean(1, true);
+            ps.setInt(2, id);
+            ps.executeUpdate();
+            System.out.println("Usuario actualizado");
+        } catch (SQLException ex) {
+            System.out.println("error de conexion");
+        }
     }
 
     @Override

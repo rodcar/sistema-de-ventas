@@ -57,9 +57,8 @@ public class VentaService implements CrudService<Venta> {
         this.ventaDAO.delete(id);
     }
 
-    public void anular(Venta venta) {
-        venta.setAnulada(true);
-        this.ventaDAO.update(venta);
+    public void anular(int id) {
+        this.ventaDAO.delete(id);
     }
 
 }

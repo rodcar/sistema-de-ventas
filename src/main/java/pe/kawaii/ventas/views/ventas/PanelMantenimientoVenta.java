@@ -4,17 +4,30 @@
  */
 package pe.kawaii.ventas.views.ventas;
 
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Optional;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
+import pe.kawaii.ventas.controllers.VentaController;
+import pe.kawaii.ventas.models.Venta;
+
 /**
  *
  * @author Ivan
  */
 public class PanelMantenimientoVenta extends javax.swing.JPanel {
 
+    private ArrayList<Venta> ventas;
+    private Venta ventaSeleccionada;
+
     /**
      * Creates new form PanelMantenimientoVentas
      */
     public PanelMantenimientoVenta() {
+        ventas = new ArrayList<>();
         initComponents();
+        actualizarTablaVentas();
     }
 
     /**
@@ -29,7 +42,6 @@ public class PanelMantenimientoVenta extends javax.swing.JPanel {
         jLabel3 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         tblVentas = new javax.swing.JTable();
-        btnActualizar = new javax.swing.JButton();
         btnAnular = new javax.swing.JButton();
 
         jLabel3.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
@@ -53,13 +65,6 @@ public class PanelMantenimientoVenta extends javax.swing.JPanel {
         });
         jScrollPane1.setViewportView(tblVentas);
 
-        btnActualizar.setText("Editar");
-        btnActualizar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnActualizarActionPerformed(evt);
-            }
-        });
-
         btnAnular.setText("Anular");
         btnAnular.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -75,17 +80,14 @@ public class PanelMantenimientoVenta extends javax.swing.JPanel {
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 770, Short.MAX_VALUE)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(btnActualizar, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(btnAnular)
-                                .addGap(0, 0, Short.MAX_VALUE)))
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 770, Short.MAX_VALUE)
                         .addGap(17, 17, 17))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel3)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(btnAnular)
+                        .addGap(0, 0, Short.MAX_VALUE))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -93,9 +95,7 @@ public class PanelMantenimientoVenta extends javax.swing.JPanel {
                 .addGap(14, 14, 14)
                 .addComponent(jLabel3)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnActualizar)
-                    .addComponent(btnAnular))
+                .addComponent(btnAnular)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 492, Short.MAX_VALUE)
                 .addContainerGap())
@@ -103,32 +103,49 @@ public class PanelMantenimientoVenta extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void tblVentasMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblVentasMouseClicked
-        /*int rowIndex = this.tblUsuarios.getSelectedRow();
-        this.usuarioSeleccionado = this.usuarios.get(rowIndex);*/
+        int rowIndex = this.tblVentas.getSelectedRow();
+        this.ventaSeleccionada = this.ventas.get(rowIndex);
     }//GEN-LAST:event_tblVentasMouseClicked
 
-    private void btnActualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnActualizarActionPerformed
-        /*int rowIndex = this.tblUsuarios.getSelectedRow();
-        if (rowIndex != -1) {
-            this.usuarioSeleccionado = this.usuarios.get(rowIndex);
-            VentanaActualizarUsuario ventanaActualizar = new VentanaActualizarUsuario(this, this.usuarioSeleccionado);
-            ventanaActualizar.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-            ventanaActualizar.setVisible(true);
-        }*/
-    }//GEN-LAST:event_btnActualizarActionPerformed
-
     private void btnAnularActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAnularActionPerformed
-        /*if (usuarioSeleccionado != null) {
-            int id = this.usuarioSeleccionado.getId();
-            UsuarioController.eliminar(id);
-            actualizarTablaUsuario();
-            this.usuarioSeleccionado = null;
-        }*/
+        int rowIndex = this.tblVentas.getSelectedRow();
+
+        if (rowIndex != -1) {
+            int id = this.ventas.get(rowIndex).getId();
+            VentaController.anularVenta(id);
+            actualizarTablaVentas();
+            JOptionPane.showMessageDialog(null, "El venta a ha anulado correctamente", "Aviso", JOptionPane.INFORMATION_MESSAGE);        
+        }
     }//GEN-LAST:event_btnAnularActionPerformed
 
+    void actualizarTablaVentas() {
+        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+        Optional<ArrayList<Venta>> ventasObtenidas = VentaController.findAll();
+
+        if (ventasObtenidas.isPresent()) {
+            this.ventas = ventasObtenidas.get();
+
+            DefaultTableModel dtm = new DefaultTableModel(0, 0);
+            String header[] = new String[]{"ID", "Vendedor ID", "Vendedor", "Cliente ID", "Nombre del cliente", "Fecha", "Total", "Anulada"};
+            dtm.setColumnIdentifiers(header);
+            this.tblVentas.setModel(dtm);
+
+            for (Venta v : ventas) {
+                dtm.addRow(new Object[]{
+                    v.getId(),
+                    v.getVendedor().getId(),
+                    v.getVendedor().getUsername(),
+                    v.getCliente().getId(),
+                    v.getCliente().getNombreCompleto(),
+                    format.format(v.getFechaRegistro()),
+                    v.getTotal(),
+                    (v.isAnulada()) ? "Sí" : "No"
+                });
+            }
+        }
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnActualizar;
     private javax.swing.JButton btnAnular;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JScrollPane jScrollPane1;

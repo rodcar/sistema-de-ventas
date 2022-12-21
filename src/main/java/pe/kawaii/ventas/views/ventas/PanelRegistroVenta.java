@@ -426,7 +426,7 @@ public class PanelRegistroVenta extends javax.swing.JPanel {
             });
         }
         this.venta.setTotal(total);
-        this.lblTotal.setText("%.2f".formatted(total));
+        this.lblTotal.setText("S/.%.2f".formatted(total));
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
