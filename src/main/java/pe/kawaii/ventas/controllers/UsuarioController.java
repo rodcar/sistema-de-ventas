@@ -25,4 +25,8 @@ public class UsuarioController {
         usuarioService.save(u);
     }
 
+    public static void eliminar(int id) {
+        usuarioService.delete(id);
+    }
+
 }
