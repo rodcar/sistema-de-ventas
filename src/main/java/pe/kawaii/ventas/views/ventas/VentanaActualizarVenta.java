@@ -1,6 +1,6 @@
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
+ * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
 package pe.kawaii.ventas.views.ventas;
 
@@ -8,12 +8,12 @@ package pe.kawaii.ventas.views.ventas;
  *
  * @author Ivan
  */
-public class PanelMantenimientoVenta extends javax.swing.JPanel {
+public class VentanaActualizarVenta extends javax.swing.JFrame {
 
     /**
-     * Creates new form PanelMantenimientoVentas
+     * Creates new form VentanaActualizarVenta
      */
-    public PanelMantenimientoVenta() {
+    public VentanaActualizarVenta() {
         initComponents();
     }
 
@@ -31,6 +31,8 @@ public class PanelMantenimientoVenta extends javax.swing.JPanel {
         tblVentas = new javax.swing.JTable();
         btnActualizar = new javax.swing.JButton();
         btnAnular = new javax.swing.JButton();
+
+        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jLabel3.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jLabel3.setText("Mantenimiento de ventas");
@@ -67,8 +69,8 @@ public class PanelMantenimientoVenta extends javax.swing.JPanel {
             }
         });
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
-        this.setLayout(layout);
+        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
+        getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
@@ -76,7 +78,7 @@ public class PanelMantenimientoVenta extends javax.swing.JPanel {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 770, Short.MAX_VALUE)
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 1161, Short.MAX_VALUE)
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(btnActualizar, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -97,9 +99,11 @@ public class PanelMantenimientoVenta extends javax.swing.JPanel {
                     .addComponent(btnActualizar)
                     .addComponent(btnAnular))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 492, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 493, Short.MAX_VALUE)
                 .addContainerGap())
         );
+
+        pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void tblVentasMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblVentasMouseClicked
@@ -125,7 +129,6 @@ public class PanelMantenimientoVenta extends javax.swing.JPanel {
             this.usuarioSeleccionado = null;
         }*/
     }//GEN-LAST:event_btnAnularActionPerformed
-
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnActualizar;

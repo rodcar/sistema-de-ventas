@@ -9,7 +9,6 @@ import java.util.Optional;
 import pe.kawaii.ventas.daos.IClienteDAO;
 import pe.kawaii.ventas.db.DbConn;
 import pe.kawaii.ventas.models.Cliente;
-import pe.kawaii.ventas.models.Rol;
 
 public class ClienteDAO implements IClienteDAO {
     
