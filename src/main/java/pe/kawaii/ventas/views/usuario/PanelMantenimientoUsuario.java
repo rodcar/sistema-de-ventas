@@ -232,6 +232,7 @@ public class PanelMantenimientoUsuario extends javax.swing.JPanel {
             int id = this.usuarioSeleccionado.getId();
             UsuarioController.eliminar(id);
             actualizarTablaUsuario();
+            this.usuarioSeleccionado = null;
         }
     }//GEN-LAST:event_btnEliminarActionPerformed
 
