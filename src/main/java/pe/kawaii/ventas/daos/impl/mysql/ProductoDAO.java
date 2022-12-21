@@ -9,8 +9,6 @@ import java.util.Optional;
 import pe.kawaii.ventas.daos.IProductoDAO;
 import pe.kawaii.ventas.db.DbConn;
 import pe.kawaii.ventas.models.Producto;
-import pe.kawaii.ventas.models.Rol;
-import pe.kawaii.ventas.models.Usuario;
 
 /**
  *
@@ -28,13 +26,36 @@ public class ProductoDAO implements IProductoDAO {
     }
 
     @Override
-    public void save(Producto t) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    public void save(Producto p) {
+        try {
+            cn = DbConn.getConnection();
+            ps = cn.prepareStatement("insert into productos values(null, ?, ?, ?, ?)");
+            ps.setString(1, p.getNombre());
+            ps.setString(2, p.getDescripcion());
+            ps.setDouble(3, p.getPrecio());
+            ps.setInt(4, p.getStock());
+            ps.executeUpdate();
+            System.out.println("Producto Grabado");
+        } catch (SQLException ex) {
+            System.out.println("error de conexion: " + ex);
+        }
     }
 
     @Override
-    public void update(Producto t) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    public void update(Producto p) {
+        try {
+            cn = DbConn.getConnection();
+            ps = cn.prepareStatement("update productos set nombre=?,descripcion=?,precio=?,stock=? where id=?");
+            ps.setInt(5, p.getId());
+            ps.setString(1, p.getNombre());
+            ps.setString(2, p.getDescripcion());
+            ps.setDouble(3, p.getPrecio());
+            ps.setInt(4, p.getStock());
+            ps.executeUpdate();
+            System.out.println("Producto actualizado");
+        } catch (SQLException ex) {
+            System.out.println("error de conexion");
+        }
     }
 
     @Override
@@ -62,7 +83,15 @@ public class ProductoDAO implements IProductoDAO {
 
     @Override
     public void delete(int id) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        try {
+            cn = DbConn.getConnection();
+            ps = cn.prepareStatement("delete from productos where id=?");
+            ps.setInt(1, id);
+            ps.executeUpdate();
+            System.out.println("Cliente Eliminado");
+        } catch (SQLException ex) {
+            System.out.println("error de conexion");
+        }
     }
 
 }

@@ -6,11 +6,12 @@ package pe.kawaii.ventas.views.productos;
 
 import java.util.ArrayList;
 import java.util.Optional;
+import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
-import pe.kawaii.ventas.controllers.ProductosController;
+import pe.kawaii.ventas.controllers.ProductoController;
 import pe.kawaii.ventas.controllers.UsuarioController;
 import pe.kawaii.ventas.models.Producto;
-import pe.kawaii.ventas.models.Usuario;
 
 /**
  *
@@ -41,55 +42,40 @@ public class PanelMantenimientoProducto extends javax.swing.JPanel {
 
         jLabel3 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        tblUsuarios = new javax.swing.JTable();
+        tblProductos = new javax.swing.JTable();
         btnActualizar = new javax.swing.JButton();
         btnEliminar = new javax.swing.JButton();
         jPanel1 = new javax.swing.JPanel();
-        txtUsername = new javax.swing.JTextField();
+        txtDescripcion = new javax.swing.JTextField();
         jLabel9 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        btnCrear = new javax.swing.JButton();
+        btnRegistrar = new javax.swing.JButton();
         jLabel4 = new javax.swing.JLabel();
-        txtNombres = new javax.swing.JTextField();
+        txtNombre = new javax.swing.JTextField();
         jLabel8 = new javax.swing.JLabel();
-        jSpinner1 = new javax.swing.JSpinner();
-        jSpinner2 = new javax.swing.JSpinner();
+        spnStock = new javax.swing.JSpinner();
+        spnPrecio = new javax.swing.JSpinner();
 
         jLabel3.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jLabel3.setText("Mantenimiento de productos");
 
-        tblUsuarios.setModel(new javax.swing.table.DefaultTableModel(
+        tblProductos.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+                {},
+                {},
+                {},
+                {}
             },
             new String [] {
-                "ID", "Nombre Completo", "Usuario", "Rol"
-            }
-        ) {
-            Class[] types = new Class [] {
-                java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.Object.class
-            };
-            boolean[] canEdit = new boolean [] {
-                false, false, false, false
-            };
 
-            public Class getColumnClass(int columnIndex) {
-                return types [columnIndex];
             }
-
-            public boolean isCellEditable(int rowIndex, int columnIndex) {
-                return canEdit [columnIndex];
-            }
-        });
-        tblUsuarios.addMouseListener(new java.awt.event.MouseAdapter() {
+        ));
+        tblProductos.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                tblUsuariosMouseClicked(evt);
+                tblProductosMouseClicked(evt);
             }
         });
-        jScrollPane1.setViewportView(tblUsuarios);
+        jScrollPane1.setViewportView(tblProductos);
 
         btnActualizar.setText("Editar");
         btnActualizar.addActionListener(new java.awt.event.ActionListener() {
@@ -111,10 +97,10 @@ public class PanelMantenimientoProducto extends javax.swing.JPanel {
 
         jLabel2.setText("Stock");
 
-        btnCrear.setText("Registrar");
-        btnCrear.addActionListener(new java.awt.event.ActionListener() {
+        btnRegistrar.setText("Registrar");
+        btnRegistrar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnCrearActionPerformed(evt);
+                btnRegistrarActionPerformed(evt);
             }
         });
 
@@ -122,7 +108,7 @@ public class PanelMantenimientoProducto extends javax.swing.JPanel {
 
         jLabel8.setText("Descripcion");
 
-        jSpinner2.setModel(new javax.swing.SpinnerNumberModel(0, 0, null, 1));
+        spnPrecio.setModel(new javax.swing.SpinnerNumberModel(0, 0, null, 1));
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -131,26 +117,23 @@ public class PanelMantenimientoProducto extends javax.swing.JPanel {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jLabel9, javax.swing.GroupLayout.DEFAULT_SIZE, 100, Short.MAX_VALUE))
+                        .addGap(6, 6, 6)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(spnStock, javax.swing.GroupLayout.DEFAULT_SIZE, 151, Short.MAX_VALUE)
+                            .addComponent(spnPrecio)))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                    .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(jLabel9, javax.swing.GroupLayout.DEFAULT_SIZE, 100, Short.MAX_VALUE))
-                                .addGap(6, 6, 6)
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(jSpinner1, javax.swing.GroupLayout.DEFAULT_SIZE, 151, Short.MAX_VALUE)
-                                    .addComponent(jSpinner2)))
-                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(jLabel8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                                .addGap(6, 6, 6)
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(txtNombres, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(txtUsername, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addComponent(btnCrear, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jLabel8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 44, Short.MAX_VALUE)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(txtNombre, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtDescripcion, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addComponent(btnRegistrar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
@@ -159,21 +142,21 @@ public class PanelMantenimientoProducto extends javax.swing.JPanel {
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4)
-                    .addComponent(txtNombres, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtNombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtUsername, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtDescripcion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jSpinner2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(spnPrecio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(9, 9, 9)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
-                    .addComponent(jSpinner1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(spnStock, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(15, 15, 15)
-                .addComponent(btnCrear)
+                .addComponent(btnRegistrar)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -218,44 +201,54 @@ public class PanelMantenimientoProducto extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void tblUsuariosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblUsuariosMouseClicked
-        int rowIndex = this.tblUsuarios.getSelectedRow();
+    private void tblProductosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblProductosMouseClicked
+        int rowIndex = this.tblProductos.getSelectedRow();
         this.productoSeleccionado = this.productos.get(rowIndex);
-    }//GEN-LAST:event_tblUsuariosMouseClicked
+    }//GEN-LAST:event_tblProductosMouseClicked
 
     private void btnActualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnActualizarActionPerformed
-        /*int rowIndex = this.tblUsuarios.getSelectedRow();
+        int rowIndex = this.tblProductos.getSelectedRow();
         if (rowIndex != -1) {
-            this.productoSeleccionado = this.producto.get(rowIndex);
-            VentanaActualizarUsuario ventanaActualizar = new VentanaActualizarUsuario(this, this.productoSeleccionado);
+            this.productoSeleccionado = this.productos.get(rowIndex);
+            VentanaActualizarProducto ventanaActualizar = new VentanaActualizarProducto(this, this.productoSeleccionado);
             ventanaActualizar.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
             ventanaActualizar.setVisible(true);
-        }*/
+        }
     }//GEN-LAST:event_btnActualizarActionPerformed
 
     private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
         if (productoSeleccionado != null) {
             int id = this.productoSeleccionado.getId();
-            UsuarioController.eliminar(id);
+            ProductoController.eliminar(id);
             actualizarTablaProducto();
             this.productoSeleccionado = null;
         }
     }//GEN-LAST:event_btnEliminarActionPerformed
 
-    private void btnCrearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCrearActionPerformed
-        String nombreCompleto = txtNombres.getText().trim();
-        String username = txtUsername.getText().trim();
+    private void btnRegistrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistrarActionPerformed
+        String nombre = txtNombre.getText().trim();
+        String descripcion = txtDescripcion.getText().trim();
+        double precio = Double.parseDouble(spnPrecio.getValue().toString());
+        int stock = Integer.parseInt(spnStock.getValue().toString());
+
+        Producto producto = new Producto();
+        producto.setNombre(nombre);
+        producto.setDescripcion(descripcion);
+        producto.setPrecio(precio);
+        producto.setStock(stock);
+
+        ProductoController.guardar(producto);
         //String password = String.valueOf(txtPassword.getPassword());
         //Rol rol = (cmbRol.getSelectedIndex() == 0) ? Rol.ADMINISTRADOR : Rol.VENDEDOR;
         //Usuario u = new Usuario(-1, nombreCompleto, username, password, rol);
         // TODO falta validar que el usuario ya se encuentra registrado
         //UsuarioController.registrar(u);
-        //JOptionPane.showMessageDialog(null, "El usuario se registró correctamente", "Registro", JOptionPane.INFORMATION_MESSAGE);
         actualizarTablaProducto();
-    }//GEN-LAST:event_btnCrearActionPerformed
+        JOptionPane.showMessageDialog(null, "El producto se registró correctamente", "Registro", JOptionPane.INFORMATION_MESSAGE);
+    }//GEN-LAST:event_btnRegistrarActionPerformed
 
     void actualizarTablaProducto() {
-        Optional<ArrayList<Producto>> productosObtenidos = ProductosController.findAll();
+        Optional<ArrayList<Producto>> productosObtenidos = ProductoController.findAll();
 
         if (productosObtenidos.isPresent()) {
             this.productos = productosObtenidos.get();
@@ -263,7 +256,7 @@ public class PanelMantenimientoProducto extends javax.swing.JPanel {
             DefaultTableModel dtm = new DefaultTableModel(0, 0);
             String header[] = new String[]{"ID", "Nombre", "Descripcion", "Precio", "Stock"};
             dtm.setColumnIdentifiers(header);
-            this.tblUsuarios.setModel(dtm);
+            this.tblProductos.setModel(dtm);
 
             for (Producto p : productos) {
                 dtm.addRow(new Object[]{
@@ -279,8 +272,8 @@ public class PanelMantenimientoProducto extends javax.swing.JPanel {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnActualizar;
-    private javax.swing.JButton btnCrear;
     private javax.swing.JButton btnEliminar;
+    private javax.swing.JButton btnRegistrar;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -288,10 +281,10 @@ public class PanelMantenimientoProducto extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JSpinner jSpinner1;
-    private javax.swing.JSpinner jSpinner2;
-    private javax.swing.JTable tblUsuarios;
-    private javax.swing.JTextField txtNombres;
-    private javax.swing.JTextField txtUsername;
+    private javax.swing.JSpinner spnPrecio;
+    private javax.swing.JSpinner spnStock;
+    private javax.swing.JTable tblProductos;
+    private javax.swing.JTextField txtDescripcion;
+    private javax.swing.JTextField txtNombre;
     // End of variables declaration//GEN-END:variables
 }

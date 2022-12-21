@@ -29,6 +29,7 @@ public class VentanaActualizarUsuario extends javax.swing.JFrame {
         this.txtNombres.setText(u.getNombreCompleto());
         this.txtUsername.setText(u.getUsername());
         this.cmbRol.setSelectedIndex(u.getRol().ordinal());
+        setLocationRelativeTo(null);
     }
 
     /**
@@ -51,6 +52,7 @@ public class VentanaActualizarUsuario extends javax.swing.JFrame {
         btnActualizar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Actualización");
 
         jLabel4.setText("Nombre Completo");
 
