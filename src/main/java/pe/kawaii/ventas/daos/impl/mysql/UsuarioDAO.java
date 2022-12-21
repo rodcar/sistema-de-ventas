@@ -37,15 +37,27 @@ public class UsuarioDAO implements IUsuarioDAO {
             ps.setString(3, u.getPassword());
             ps.setInt(4, u.getRol().ordinal());
             ps.executeUpdate();
-            System.out.println("Curso Grabado");
+            System.out.println("Usuario Grabado");
         } catch (SQLException ex) {
             System.out.println("error de conexion: " + ex);
         }
     }
 
     @Override
-    public void update(Usuario t) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    public void update(Usuario u) {
+        try {
+            cn = DbConn.getConnection();
+            ps = cn.prepareStatement("update usuarios set nombre=?,username=?,password=md5(?),rol_id=? where id=?");
+            ps.setInt(5, u.getId());
+            ps.setString(1, u.getNombreCompleto());
+            ps.setString(2, u.getUsername());
+            ps.setString(3, u.getPassword());
+            ps.setInt(4, u.getRol().ordinal());
+            ps.executeUpdate();
+            System.out.println("Usuario actualizado");
+        } catch (SQLException ex) {
+            System.out.println("error de conexion");
+        }
     }
 
     @Override
@@ -83,7 +95,7 @@ public class UsuarioDAO implements IUsuarioDAO {
             ps = cn.prepareStatement("delete from usuarios where id=?");
             ps.setInt(1, id);
             ps.executeUpdate();
-            System.out.println("Curso Eliminado");
+            System.out.println("Usuario Eliminado");
         } catch (SQLException ex) {
             System.out.println("error de conexion");
         }
