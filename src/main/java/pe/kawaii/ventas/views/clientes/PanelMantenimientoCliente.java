@@ -234,7 +234,7 @@ public class PanelMantenimientoCliente extends javax.swing.JPanel {
 
         ClienteController.registrar(cliente);
         actualizarTablaCliente();
-        JOptionPane.showMessageDialog(null, "El usuario se registró correctamente", "Registro", JOptionPane.INFORMATION_MESSAGE);
+        JOptionPane.showMessageDialog(null, "El cliente se registró correctamente", "Registro", JOptionPane.INFORMATION_MESSAGE);
     }//GEN-LAST:event_btnCrearActionPerformed
 
     private void txtNombreCompletoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNombreCompletoActionPerformed
