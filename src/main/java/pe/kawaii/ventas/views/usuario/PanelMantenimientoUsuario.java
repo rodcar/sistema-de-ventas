@@ -6,6 +6,7 @@ package pe.kawaii.ventas.views.usuario;
 
 import java.util.ArrayList;
 import java.util.Optional;
+import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import pe.kawaii.ventas.controllers.UsuarioController;
@@ -92,6 +93,11 @@ public class PanelMantenimientoUsuario extends javax.swing.JPanel {
         jScrollPane1.setViewportView(tblUsuarios);
 
         btnActualizar.setText("Editar");
+        btnActualizar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnActualizarActionPerformed(evt);
+            }
+        });
 
         btnEliminar.setText("Eliminar");
         btnEliminar.addActionListener(new java.awt.event.ActionListener() {
@@ -240,6 +246,16 @@ public class PanelMantenimientoUsuario extends javax.swing.JPanel {
         int rowIndex = this.tblUsuarios.getSelectedRow();
         this.usuarioSeleccionado = this.usuarios.get(rowIndex);
     }//GEN-LAST:event_tblUsuariosMouseClicked
+
+    private void btnActualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnActualizarActionPerformed
+        int rowIndex = this.tblUsuarios.getSelectedRow();
+        if (rowIndex != -1) {
+            this.usuarioSeleccionado = this.usuarios.get(rowIndex);
+            VentanaActualizarUsuario ventanaActualizar = new VentanaActualizarUsuario(this, this.usuarioSeleccionado);
+            ventanaActualizar.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+            ventanaActualizar.setVisible(true);
+        }
+    }//GEN-LAST:event_btnActualizarActionPerformed
 
     void actualizarTablaUsuario() {
         Optional<ArrayList<Usuario>> usuariosObtenidos = UsuarioController.getAll();

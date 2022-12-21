@@ -4,20 +4,31 @@
  */
 package pe.kawaii.ventas.views.usuario;
 
+import javax.swing.JFrame;
 import javax.swing.JOptionPane;
+import pe.kawaii.ventas.controllers.UsuarioController;
 import pe.kawaii.ventas.models.Rol;
+import pe.kawaii.ventas.models.Usuario;
 
 /**
  *
  * @author Ivan
  */
 public class VentanaActualizarUsuario extends javax.swing.JFrame {
+    
+    private PanelMantenimientoUsuario panel;
+    private Usuario usuario;
 
     /**
      * Creates new form VentanaActualizarUsuario
      */
-    public VentanaActualizarUsuario() {
+    public VentanaActualizarUsuario(PanelMantenimientoUsuario panel, Usuario u) {     
+        this.panel = panel;
+        this.usuario = u;
         initComponents();
+        this.txtNombres.setText(u.getNombreCompleto());
+        this.txtUsername.setText(u.getUsername());
+        this.cmbRol.setSelectedIndex(u.getRol().ordinal());
     }
 
     /**
@@ -37,7 +48,7 @@ public class VentanaActualizarUsuario extends javax.swing.JFrame {
         txtPassword = new javax.swing.JPasswordField();
         jLabel2 = new javax.swing.JLabel();
         cmbRol = new javax.swing.JComboBox<>();
-        btnCrear = new javax.swing.JButton();
+        btnActualizar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -51,10 +62,10 @@ public class VentanaActualizarUsuario extends javax.swing.JFrame {
 
         cmbRol.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Administrador", "Vendedor" }));
 
-        btnCrear.setText("Actualizar");
-        btnCrear.addActionListener(new java.awt.event.ActionListener() {
+        btnActualizar.setText("Actualizar");
+        btnActualizar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnCrearActionPerformed(evt);
+                btnActualizarActionPerformed(evt);
             }
         });
 
@@ -65,7 +76,7 @@ public class VentanaActualizarUsuario extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                    .addComponent(btnCrear, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btnActualizar, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                         .addGroup(layout.createSequentialGroup()
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
@@ -107,62 +118,32 @@ public class VentanaActualizarUsuario extends javax.swing.JFrame {
                     .addComponent(cmbRol, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel2))
                 .addGap(15, 15, 15)
-                .addComponent(btnCrear)
+                .addComponent(btnActualizar)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btnCrearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCrearActionPerformed
+    private void btnActualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnActualizarActionPerformed
         String nombreCompleto = txtNombres.getText().trim();
         String username = txtUsername.getText().trim();
         String password = String.valueOf(txtPassword.getPassword());
         Rol rol = (cmbRol.getSelectedIndex() == 0) ? Rol.ADMINISTRADOR : Rol.VENDEDOR;
         
+        this.usuario.setNombreCompleto(nombreCompleto);
+        this.usuario.setUsername(username);
+        this.usuario.setPassword(password);
+        this.usuario.setRol(rol);
+        UsuarioController.actualizar(this.usuario);
+        panel.actualizarTablaUsuario();
+        this.dispose();
         // TODO falta validar que el usuario ya se encuentra registrado
-        
-        JOptionPane.showMessageDialog(null, "El usuario se actualizó correctamente", "Aviso", JOptionPane.INFORMATION_MESSAGE);
-        
-    }//GEN-LAST:event_btnCrearActionPerformed
-
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(VentanaActualizarUsuario.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(VentanaActualizarUsuario.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(VentanaActualizarUsuario.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(VentanaActualizarUsuario.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new VentanaActualizarUsuario().setVisible(true);
-            }
-        });
-    }
+        JOptionPane.showMessageDialog(null, "El usuario se actualizó correctamente", "Aviso", JOptionPane.INFORMATION_MESSAGE);        
+    }//GEN-LAST:event_btnActualizarActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnCrear;
+    private javax.swing.JButton btnActualizar;
     private javax.swing.JComboBox<String> cmbRol;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel4;

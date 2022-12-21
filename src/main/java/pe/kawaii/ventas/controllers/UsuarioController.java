@@ -29,4 +29,8 @@ public class UsuarioController {
         usuarioService.delete(id);
     }
 
+    public static void actualizar(Usuario usuario) {
+        usuarioService.update(usuario);
+    }
+
 }
