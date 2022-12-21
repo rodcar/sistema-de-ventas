@@ -76,7 +76,6 @@ public class PanelMantenimientoCliente extends javax.swing.JPanel {
 
         btnCrear.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         btnCrear.setForeground(new java.awt.Color(0, 102, 153));
-        btnCrear.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imgs/agregar1.png"))); // NOI18N
         btnCrear.setText("Registrar");
         btnCrear.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
