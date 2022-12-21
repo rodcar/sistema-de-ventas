@@ -7,6 +7,7 @@ package pe.kawaii.ventas.views.usuario;
 import java.util.ArrayList;
 import java.util.Optional;
 import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
 import pe.kawaii.ventas.controllers.UsuarioController;
 import pe.kawaii.ventas.models.Rol;
 import pe.kawaii.ventas.models.Usuario;
@@ -17,11 +18,16 @@ import pe.kawaii.ventas.models.Usuario;
  */
 public class PanelMantenimientoUsuario extends javax.swing.JPanel {
 
+    private ArrayList<Usuario> usuarios;
+    private Usuario usuarioSeleccionado;
+
     /**
      * Creates new form PanelCrearUsuario
      */
     public PanelMantenimientoUsuario() {
+        usuarios = new ArrayList<>();
         initComponents();
+        actualizarTablaUsuario();
     }
 
     /**
@@ -35,8 +41,7 @@ public class PanelMantenimientoUsuario extends javax.swing.JPanel {
 
         jLabel3 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
-        btnConsultar = new javax.swing.JButton();
+        tblUsuarios = new javax.swing.JTable();
         btnActualizar = new javax.swing.JButton();
         btnEliminar = new javax.swing.JButton();
         jPanel1 = new javax.swing.JPanel();
@@ -53,7 +58,7 @@ public class PanelMantenimientoUsuario extends javax.swing.JPanel {
         jLabel3.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jLabel3.setText("Mantenimiento de usuarios");
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        tblUsuarios.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -79,19 +84,21 @@ public class PanelMantenimientoUsuario extends javax.swing.JPanel {
                 return canEdit [columnIndex];
             }
         });
-        jScrollPane1.setViewportView(jTable1);
-
-        btnConsultar.setText("Consultar");
-        btnConsultar.setToolTipText("");
-        btnConsultar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnConsultarActionPerformed(evt);
+        tblUsuarios.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tblUsuariosMouseClicked(evt);
             }
         });
+        jScrollPane1.setViewportView(tblUsuarios);
 
-        btnActualizar.setText("Actualizar");
+        btnActualizar.setText("Editar");
 
         btnEliminar.setText("Eliminar");
+        btnEliminar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnEliminarActionPerformed(evt);
+            }
+        });
 
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createEtchedBorder(), "Registro"));
 
@@ -109,12 +116,6 @@ public class PanelMantenimientoUsuario extends javax.swing.JPanel {
         });
 
         jLabel4.setText("Nombre Completo");
-
-        txtNombres.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtNombresActionPerformed(evt);
-            }
-        });
 
         jLabel8.setText("Usuario");
 
@@ -189,8 +190,6 @@ public class PanelMantenimientoUsuario extends javax.swing.JPanel {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 552, Short.MAX_VALUE)
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(btnConsultar, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(btnActualizar)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(btnEliminar)
@@ -203,7 +202,6 @@ public class PanelMantenimientoUsuario extends javax.swing.JPanel {
                 .addGap(6, 6, 6)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
-                    .addComponent(btnConsultar)
                     .addComponent(btnActualizar)
                     .addComponent(btnEliminar))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -226,26 +224,46 @@ public class PanelMantenimientoUsuario extends javax.swing.JPanel {
         // TODO falta validar que el usuario ya se encuentra registrado
         UsuarioController.registrar(u);
         JOptionPane.showMessageDialog(null, "El usuario se registró correctamente", "Registro", JOptionPane.INFORMATION_MESSAGE);
+        actualizarTablaUsuario();
     }//GEN-LAST:event_btnCrearActionPerformed
 
-    private void txtNombresActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNombresActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtNombresActionPerformed
+    private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
+        if (usuarioSeleccionado != null) {
+            int id = this.usuarioSeleccionado.getId();
+            UsuarioController.eliminar(id);
+            actualizarTablaUsuario();
+        }
+    }//GEN-LAST:event_btnEliminarActionPerformed
 
-    private void btnConsultarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConsultarActionPerformed
-        Optional<ArrayList<Usuario>> usuarios = UsuarioController.getAll();
+    private void tblUsuariosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblUsuariosMouseClicked
+        int rowIndex = this.tblUsuarios.getSelectedRow();
+        this.usuarioSeleccionado = this.usuarios.get(rowIndex);
+    }//GEN-LAST:event_tblUsuariosMouseClicked
 
-        if (usuarios.isPresent()) {
-            for (Usuario u : usuarios.get()) {
-                System.out.println(u);
+    void actualizarTablaUsuario() {
+        Optional<ArrayList<Usuario>> usuariosObtenidos = UsuarioController.getAll();
+
+        if (usuariosObtenidos.isPresent()) {
+            this.usuarios = usuariosObtenidos.get();
+
+            DefaultTableModel dtm = new DefaultTableModel(0, 0);
+            String header[] = new String[]{"ID", "Nombre completo", "Usuario", "Rol"};
+            dtm.setColumnIdentifiers(header);
+            this.tblUsuarios.setModel(dtm);
+
+            for (Usuario u : usuarios) {
+                dtm.addRow(new Object[]{
+                    u.getId(),
+                    u.getNombreCompleto(),
+                    u.getUsername(),
+                    u.getRol().toString()
+                });
             }
         }
-    }//GEN-LAST:event_btnConsultarActionPerformed
-
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnActualizar;
-    private javax.swing.JButton btnConsultar;
     private javax.swing.JButton btnCrear;
     private javax.swing.JButton btnEliminar;
     private javax.swing.JComboBox<String> cmbRol;
@@ -256,7 +274,7 @@ public class PanelMantenimientoUsuario extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
+    private javax.swing.JTable tblUsuarios;
     private javax.swing.JTextField txtNombres;
     private javax.swing.JPasswordField txtPassword;
     private javax.swing.JTextField txtUsername;

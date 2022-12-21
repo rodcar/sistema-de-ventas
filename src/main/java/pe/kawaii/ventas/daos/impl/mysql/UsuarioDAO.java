@@ -78,7 +78,15 @@ public class UsuarioDAO implements IUsuarioDAO {
 
     @Override
     public void delete(int id) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        try {
+            cn = DbConn.getConnection();
+            ps = cn.prepareStatement("delete from usuarios where id=?");
+            ps.setInt(1, id);
+            ps.executeUpdate();
+            System.out.println("Curso Eliminado");
+        } catch (SQLException ex) {
+            System.out.println("error de conexion");
+        }
     }
 
     @Override
