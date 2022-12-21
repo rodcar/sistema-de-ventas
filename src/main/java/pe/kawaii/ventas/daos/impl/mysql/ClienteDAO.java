@@ -47,13 +47,13 @@ public class ClienteDAO implements IClienteDAO {
         try {
             cn = DbConn.getConnection();
             ps = cn.prepareStatement("update clientes set nombre_completo=?,dni=?,ruc=?,correo=?,celular=?,direccion=? where id=?");
-            ps.setInt(8, u.getId());
+            ps.setInt(7, u.getId());
             ps.setString(1, u.getNombreCompleto());
             ps.setString(2, u.getDni());
-            ps.setString(4, u.getRuc());
-            ps.setString(5, u.getCorreo());
-            ps.setString(6, u.getCelular());
-            ps.setString(7, u.getDireccion());
+            ps.setString(3, u.getRuc());
+            ps.setString(4, u.getCorreo());
+            ps.setString(5, u.getCelular());
+            ps.setString(6, u.getDireccion());
             ps.executeUpdate();
             System.out.println("Cliente actualizado");
         } catch (SQLException ex) {

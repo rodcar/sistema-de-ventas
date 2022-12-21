@@ -17,6 +17,9 @@ public class Cliente extends Persona {
         this.direccion = direccion;
     }
 
+    public Cliente() {        
+    }
+
     public String getDni() {
         return dni;
     }
